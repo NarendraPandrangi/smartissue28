@@ -86,52 +86,57 @@ function Dashboard() {
     // -------------------------------------
 
     return (
-        <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
-
+        <div className="container">
             {/* Header Section */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h1>Dashboard</h1>
+            <div className="flex justify-between items-center mb-4" style={{ marginBottom: '2rem' }}>
                 <div>
-                    <span style={{ marginRight: '10px' }}>{user?.email}</span>
-                    <button onClick={handleLogout} style={{ padding: '5px 10px', background: '#f44336', color: 'white', border: 'none', borderRadius: '4px' }}>Log Out</button>
+                    <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>Dashboard</h1>
+                    <p style={{ color: 'var(--text-secondary)' }}>Welcome back, {user?.email}</p>
                 </div>
+                <button onClick={handleLogout} className="btn btn-secondary">
+                    Log Out
+                </button>
             </div>
 
             {/* Action Bar: Create button & Filters */}
-            <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div className="card mb-4" style={{ padding: '1rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'space-between' }}>
                 <button
                     onClick={() => navigate('/create-issue')}
-                    style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                    className="btn btn-primary"
                 >
                     + Create New Issue
                 </button>
 
-                <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
-                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} style={{ padding: '8px' }}>
-                        <option value="All">All Statuses</option>
-                        <option value="Open">Open</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Done">Done</option>
-                    </select>
+                <div className="flex gap-4" style={{ flexWrap: 'wrap' }}>
+                    <div style={{ minWidth: '150px' }}>
+                        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                            <option value="All">All Statuses</option>
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Done">Done</option>
+                        </select>
+                    </div>
 
-                    <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)} style={{ padding: '8px' }}>
-                        <option value="All">All Priorities</option>
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                    </select>
+                    <div style={{ minWidth: '150px' }}>
+                        <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)}>
+                            <option value="All">All Priorities</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', marginBottom: '20px' }} />
-
             {/* Issue List */}
             {loading ? (
-                <p>Loading issues...</p>
+                <p className="text-center" style={{ color: 'var(--text-secondary)' }}>Loading issues...</p>
             ) : (
-                <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
                     {filteredIssues.length === 0 ? (
-                        <p style={{ textAlign: 'center', color: '#888' }}>No issues found.</p>
+                        <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                            <p>No issues found matching your filters.</p>
+                        </div>
                     ) : (
                         filteredIssues.map(issue => (
                             <IssueCard key={issue.id} issue={issue} onStatusChange={handleStatusUpdate} />

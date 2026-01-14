@@ -24,8 +24,8 @@ function App() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <p style={{ fontSize: '1.2rem', color: '#666' }}>Loading Smart Issue Board...</p>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#0f172a', color: '#f8fafc' }}>
+        <p className="font-bold text-lg">Loading Smart Issue Board...</p>
       </div>
     );
   }
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <Router>
-      <div style={{ padding: '0', fontFamily: 'sans-serif' }}>
+      <div className="app-container">
         <Routes>
           {/* Public Routes */}
           {/* If logged in, go to Dashboard, else show Login */}

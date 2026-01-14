@@ -66,80 +66,75 @@ function CreateIssue() {
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '500px', margin: 'auto' }}>
-            <h1>Create New Issue</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="container" style={{ maxWidth: '600px' }}>
+            <div className="card">
+                <h1 className="mb-4" style={{ fontSize: '1.5rem' }}>Create New Issue</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-4">
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                            placeholder="E.g., Login button not working"
+                        />
+                    </div>
 
-                {/* Title Input */}
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Title:</label><br />
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        placeholder="E.g., Login button not working"
-                        style={{ width: '100%', padding: '8px' }}
-                    />
-                </div>
+                    <div className="mb-4">
+                        <label>Description</label>
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                            placeholder="Describe the problem..."
+                            rows="5"
+                        />
+                    </div>
 
-                {/* Description Input */}
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Description:</label><br />
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                        placeholder="Describe the problem..."
-                        rows="4"
-                        style={{ width: '100%', padding: '8px' }}
-                    />
-                </div>
+                    <div className="flex gap-4 mb-4">
+                        <div className="w-full">
+                            <label>Priority</label>
+                            <select
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div className="w-full">
+                            <label>Assigned To</label>
+                            <input
+                                type="text"
+                                value={assignee}
+                                onChange={(e) => setAssignee(e.target.value)}
+                                placeholder="Name or Email"
+                            />
+                        </div>
+                    </div>
 
-                {/* Priority Dropdown */}
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Priority:</label><br />
-                    <select
-                        value={priority}
-                        onChange={(e) => setPriority(e.target.value)}
-                        style={{ width: '100%', padding: '8px' }}
-                    >
-                        <option value="Low">Low</option>
-                        <option value="Medium">Medium</option>
-                        <option value="High">High</option>
-                    </select>
-                </div>
+                    <div className="flex gap-4" style={{ marginTop: '2rem' }}>
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="btn btn-primary"
+                        >
+                            {isSubmitting ? 'Saving...' : 'Create Issue'}
+                        </button>
 
-                {/* Assigned To Input */}
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Assigned To:</label><br />
-                    <input
-                        type="text"
-                        value={assignee}
-                        onChange={(e) => setAssignee(e.target.value)}
-                        placeholder="Name or Email"
-                        style={{ width: '100%', padding: '8px' }}
-                    />
-                </div>
+                        <button
+                            type="button"
+                            onClick={() => navigate('/dashboard')}
+                            className="btn btn-secondary"
+                        >
+                            Cancel
+                        </button>
+                    </div>
 
-                {/* Buttons */}
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    style={{ padding: '10px 20px', marginRight: '10px' }}
-                >
-                    {isSubmitting ? 'Saving...' : 'Create Issue'}
-                </button>
-
-                <button
-                    type="button"
-                    onClick={() => navigate('/dashboard')}
-                    style={{ padding: '10px 20px', background: '#ccc', border: 'none' }}
-                >
-                    Cancel
-                </button>
-
-            </form>
+                </form>
+            </div>
         </div>
     );
 }

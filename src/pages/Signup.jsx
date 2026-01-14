@@ -29,36 +29,38 @@ function Signup() {
     };
 
     return (
-        <div style={{ padding: '20px', maxWidth: '400px', margin: 'auto' }}>
-            <h2>Sign Up</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleSignup}>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>Email:</label><br />
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px' }}
-                    />
-                </div>
-                <div style={{ marginBottom: '10px' }}>
-                    <label>Password:</label><br />
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px' }}
-                    />
-                </div>
-                <button type="submit" style={{ padding: '10px 20px' }}>Sign Up</button>
-            </form>
-            <p>
-                Already have an account?
-                <Link to="/" style={{ marginLeft: '5px' }}>Log In</Link>
-            </p>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', padding: '20px' }}>
+            <div className="card" style={{ width: '100%', maxWidth: '400px' }}>
+                <h2 className="text-center mb-4">Create Account</h2>
+                {error && <div className="text-center" style={{ color: 'var(--accent-danger)', marginBottom: '1rem' }}>{error}</div>}
+                <form onSubmit={handleSignup}>
+                    <div className="mb-4">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder="name@example.com"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Create a password"
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary w-full">Sign Up</button>
+                </form>
+                <p className="text-center" style={{ marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                    Already have an account?
+                    <Link to="/" style={{ marginLeft: '5px' }}>Log In</Link>
+                </p>
+            </div>
         </div>
     );
 }
