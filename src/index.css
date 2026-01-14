@@ -1,0 +1,14 @@
+/* 
+  index.css
+  This file contains global styles for your application.
+  We are keeping it simple for now. 
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
