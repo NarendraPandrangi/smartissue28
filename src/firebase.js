@@ -6,7 +6,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
 
 // 2. Define the configuration using the provided credentials
 // Hardcoding these ensures they work in deployment without needing separate environment variable configuration on Vercel
@@ -22,7 +21,6 @@ const firebaseConfig = {
 
 // 3. Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 // 4. Export the services we need
 // Auth: For signing up and logging in users
